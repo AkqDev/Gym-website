@@ -1,271 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <title>Gym Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+  />
+  <link
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    rel="stylesheet"
+  />
+  <title>Gym Website</title>
 </head>
 <body>
-    <nav>
-      <div class="navbar">
-            <div class="nav-logo">
-                <img src="logo.png">
-            </div>
-
-            <div class="nav-menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="menu-icon">
-              <i class="fa-solid fa-bars" onclick="on()"></i>
-            </div>
+  <nav>
+    <div class="navbar">
+      <div class="nav-logo">
+        <img src="logo.png" alt="Gym Logo" />
       </div>
 
-            <div id="sidebar">
-              <i class="off fa-solid fa-xmark" onclick="off()"></i>
-              <ul>
-                  <li><a href="#">Home</a></li><hr>
-                  <li><a href="#">About</a></li><hr>
-                  <li><a href="#">Services</a></li><hr>
-                  <li><a href="#">Contact</a></li><hr>
-              </ul>
+      <div class="nav-menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
 
-            <h1>Follow Us:</h1>
-            <div class="sidebar-icons">
-              <i class="fa-brands fa-instagram"></i>
-              <i class="fa-brands fa-facebook"></i>
-              <i class="fa-brands fa-twitter"></i>
-              <i class="fa-brands fa-youtube"></i>
-            </div>
-          </div>
-
-        <div class="background-text">
-            <div class="text">
-                <p>SHAPE YOUR BODY</p>
-                <h1>BE <u>STRONG</u> TRAINING HARD</h1>
-                <button>Get Info</button>
-            </div>
-        </div>
-    </nav>
-
-    <header>
-            <div class="header-text">
-                <p>WHY CHOOSE US?</p>
-                <h1>PUSH YOUR LIMITS FORWARD</h1>
-            </div>
-
-            <div class="services">
-                <div class="product-card">
-                    <img src="stationary-bike.png">
-                    <h1>Modern equipment</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore facilisis.</p>
-                </div>
-
-                <div class="product-card">
-                    <img src="juice-drink.png">
-                    <h1>Healthy Nutrition Plan</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore facilisis.</p>
-                </div>
-
-                <div class="product-card">
-                    <img src="gym.png">
-                    <h1>Proffesponal training plan</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore facilisis.</p>
-                </div>
-
-                <div class="product-card">
-                    <img src="heart-beat.png">
-                    <h1>Unique to your needs</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore facilisis.</p>
-                </div>
-            </div>
-    </header>
-
-    <section>
-        <div class="header-text">
-            <p>OUR CLASSES</p>
-            <h1>WHAT WE CAN OFFER</h1>
-        </div>
-
-      <!-- 3 images -->
-        <div class="section-product">
-            <div class="product-text1">
-              <div class="product-background1">
-                <p>STRENGTH</p>
-                <h1>WEIGHTLIFTING</h1>
-              </div>
-            </div>
-
-            <div class="product-text1">
-              <div class="product-background1">
-                <p>Cardio</p>
-                <h1>INDOOR CYCLING</h1>
-              </div>
-            </div>
-
-            <div class="product-text1">
-              <div class="product-background1">
-                <p>STRENGTH</p>
-                <h1>KETTLEBELL POWER</h1>
-              </div>
-            </div>
-        </div>
-
-        <!-- 2 images -->
-        <div class="section-product">
-            <div class="product-text2">
-              <div class="product-background2">
-                <p>Cardio</p>
-                <h1>Indoor cycling</h1>
-              </div>
-            </div>
-
-            <div class="product-text2">
-              <div class="product-background2">
-                <p>Training</p>
-                <h1>Boxing</h1>
-              </div>
-            </div>
-        </div>
-    </section>
-
-    <main>
-        <div class="background-image">
-            <h1>Registration Now To Get More Deals</h1>
-            <p>Where Health, Beauty & Fitness Meet.</p>
-            <button>APPIONTMENT</button>
-        </div>
-    </main>
-
-    <div class="our-plan">
-        <div class="header-text">
-            <p>OUR PLAN</p>
-            <h1>CHOOSE YOUR PRICING PLAN</h1>
-        </div>
-
-        <div class="price-card">
-          <div class="price">
-            <h1>Class drop-in</h1>
-            <h2>$ 39.0</h2>
-            <p>SINGLE CLASS</p>
-               <ul>
-                 <li>Free riding</li>
-                 <li> Unlimited equipments</li>
-                 <li>Personal trainer</li>
-                 <li> Weight losing classes</li>
-                 <li> Month to mouth</li>
-                 <li> No time restriction</li>
-               </ul>
-            <button>ENROLL NOW</button>
-            </div>
-
-            <div class="price">
-            <h1>12 Month unlimited</h1>
-            <h2>$ 99.0</h2>
-            <p>SINGLE CLASS</p>
-               <ul>
-                 <li>Free riding</li>
-                 <li> Unlimited equipments</li>
-                 <li>Personal trainer</li>
-                 <li> Weight losing classes</li>
-                 <li> Month to mouth</li>
-                 <li> No time restriction</li>
-               </ul>
-            <button>ENROLL NOW</button>
-            </div>
-
-            <div class="price">
-            <h1>6 Month unlimited</h1>
-            <h2>$ 59.0</h2>
-            <p>SINGLE CLASS</p>
-               <ul>
-                 <li>Free riding</li>
-                 <li> Unlimited equipments</li>
-                 <li>Personal trainer</li>
-                 <li> Weight losing classes</li>
-                 <li> Month to mouth</li>
-                 <li> No time restriction</li>
-               </ul>
-            <button>ENROLL NOW</button>
-            </div>
-        </div>
+      <div class="menu-icon">
+        <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+      </div>
     </div>
 
-<div class="main-icon">
-  <div class="all-icon">
-        <div class="icon">
-          <i class="fa-solid fa-location-dot"></i>
-          <p>Street # 10,Shop no Etc.</p>
+    <!-- Small Dropdown Menu for Mobile -->
+    <div id="mobileMenu" class="mobile-menu">
+      <ul>
+        <li><a href="#">Home</a></li><hr />
+        <li><a href="#">About</a></li><hr />
+        <li><a href="#">Services</a></li><hr />
+        <li><a href="#">Contact</a></li><hr />
+      </ul>
+    </div>
+
+    <div class="background-text" data-aos="fade-up">
+      <div class="text">
+        <p>SHAPE YOUR BODY</p>
+        <h1>BE <u>STRONG</u> TRAINING HARD</h1>
+        <button>Get Info</button>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="header-text" data-aos="fade-down">
+      <p>WHY CHOOSE US?</p>
+      <h1>PUSH YOUR LIMITS FORWARD</h1>
+    </div>
+
+    <div class="services">
+      <div class="product-card" data-aos="fade-up">
+        <img src="stationary-bike.png" alt="">
+        <h1>Modern equipment</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="juice-drink.png" alt="">
+        <h1>Healthy Nutrition Plan</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="gym.png" alt="">
+        <h1>Professional Training</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="heart-beat.png" alt="">
+        <h1>Unique to your needs</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="header-text" data-aos="fade-down">
+      <p>OUR CLASSES</p>
+      <h1>WHAT WE CAN OFFER</h1>
+    </div>
+
+    <div class="section-product">
+      <div class="product-text1" data-aos="zoom-in">
+        <div class="product-background1">
+          <p>STRENGTH</p>
+          <h1>WEIGHTLIFTING</h1>
         </div>
+      </div>
+
+      <div class="product-text1" data-aos="zoom-in" data-aos-delay="150">
+        <div class="product-background1">
+          <p>Cardio</p>
+          <h1>INDOOR CYCLING</h1>
+        </div>
+      </div>
+
+      <div class="product-text1" data-aos="zoom-in" data-aos-delay="300">
+        <div class="product-background1">
+          <p>STRENGTH</p>
+          <h1>KETTLEBELL POWER</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main data-aos="fade-up">
+    <div class="background-image">
+      <h1>Register Now To Get More Deals</h1>
+      <p>Where Health, Beauty & Fitness Meet.</p>
+      <button>APPOINTMENT</button>
+    </div>
+  </main>
+
+  <div class="our-plan">
+    <div class="header-text" data-aos="fade-down">
+      <p>OUR PLAN</p>
+      <h1>CHOOSE YOUR PRICING PLAN</h1>
+    </div>
+
+    <div class="price-card">
+      <div class="price" data-aos="flip-left">
+        <h1>Class drop-in</h1>
+        <h2>$39.0</h2>
+        <p>SINGLE CLASS</p>
+        <ul>
+          <li>Free riding</li>
+          <li>Unlimited equipment</li>
+          <li>Personal trainer</li>
+          <li>Weight losing classes</li>
+          <li>Month to month</li>
+          <li>No time restriction</li>
+        </ul>
+        <button>ENROLL NOW</button>
+      </div>
+
+      <div class="price" data-aos="flip-left" data-aos-delay="200">
+        <h1>12 Month unlimited</h1>
+        <h2>$99.0</h2>
+        <p>FULL ACCESS</p>
+        <ul>
+          <li>Free riding</li>
+          <li>Unlimited equipment</li>
+          <li>Personal trainer</li>
+          <li>Weight losing classes</li>
+          <li>Month to month</li>
+          <li>No time restriction</li>
+        </ul>
+        <button>ENROLL NOW</button>
+      </div>
+
+      <div class="price" data-aos="flip-left" data-aos-delay="400">
+        <h1>6 Month unlimited</h1>
+        <h2>$59.0</h2>
+        <p>HALF YEAR</p>
+        <ul>
+          <li>Free riding</li>
+          <li>Unlimited equipment</li>
+          <li>Personal trainer</li>
+          <li>Weight losing classes</li>
+          <li>Month to month</li>
+          <li>No time restriction</li>
+        </ul>
+        <button>ENROLL NOW</button>
+      </div>
+    </div>
   </div>
 
-  <div class="all-icon">
-        <div class="icon">
-          <i class="fa-solid fa-mobile-screen"></i>
-          <p>125-711-811 | 125-668-886</p>
-        </div>
+  <footer>
+    <div class="footer-main">
+      <div class="footer-paragraph">
+        <img src="logo.png" alt="">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-paragraph">
+        <h1>Useful links</h1>
+        <ul>
+          <li>About</li>
+          <li>Blog</li>
+          <li>Classes</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-paragraph">
+        <h1>Support</h1>
+        <ul>
+          <li>Login</li>
+          <li>My Account</li>
+          <li>Subscribe</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="end">
+    <p>Copyright ©2024 All rights reserved | Made by hassan-qureshii</p>
   </div>
 
-  <div class="all-icon">
-        <div class="icon">
-          <i class="fa-regular fa-envelope"></i>
-          <p>Support.gymcenter@gmail.com</p>
-        </div>
-  </div>
-</div>
-
-<footer>
-      <div class="footer-main">
-        <div class="footer-paragraph">
-          <img src="logo.png">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua endisse ultrices gravida lorem.</p>
-        </div>
-      </div>
-    
-      <div class="footer-main">
-        <div class="footer-paragraph">
-          <h1>Useful links</h1>
-          <ul>
-            <li>About</li>
-            <li>Blog</li>
-            <li>Classes</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-main">
-        <div class="footer-paragraph">
-          <h1>Support</h1>
-          <ul>
-            <li>Login</li>
-            <li>My Account</li>
-            <li>Subscribe</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-main">
-        <div class="footer-paragraph">
-          <h1>Tips & Guides</h1>
-          <p>Physical fitness may help prevent depression, anxiety</p>
-          <p>Fitness: The best exercise to lose belly fat and tone up...</p>
-        </div>
-      </div>
-</footer>
-
-<div class="end">
-  <p>Copyright ©2024 All rights reserved | This template is made by hassan-qureshii</p>
-</div>
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
-
-<script src="script.js"></script>
 </html>

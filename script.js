@@ -1,7 +1,4 @@
-function on(){
-    document.getElementById("sidebar").style.display = "block";
-}
-
-function off(){
-    document.getElementById("sidebar").style.display = "none";
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
 }

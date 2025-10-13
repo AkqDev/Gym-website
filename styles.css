@@ -868,3 +868,60 @@ footer .footer-main:nth-child(3){
     width:98%;
 }
 }
+
+/* Mobile dropdown menu */
+.mobile-menu {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  background: black;
+  width: 10%;
+  min-width: 120px;
+  border-left: 2px solid rgb(255, 104, 48);
+  display: none;
+  z-index: 1000;
+  animation: slideIn 0.4s ease;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.mobile-menu li a {
+  text-decoration: none;
+  color: grey;
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.mobile-menu a:hover {
+  color: rgb(255, 104, 48);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/* Menu icon styling */
+.menu-icon {
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* Hide original sidebar social icons on mobile */
+#sidebar .sidebar-icons {
+  display: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
