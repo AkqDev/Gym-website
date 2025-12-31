@@ -5,15 +5,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <title>PowerFit Gym - Transform Your Body</title>
 </head>
 
-<body class="bg-black text-white overflow-x-hidden font-['Montserrat']">
+<body class="bg-black text-white overflow-x-hidden font-sans">
+  <!-- Rest of your code remains exactly the same -->
   <!-- Back to Top Button -->
   <button id="backToTop"
     class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-[#ff6830] to-[#ff8c5a] text-white rounded-full flex items-center justify-center text-xl z-40 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hidden">
@@ -38,8 +48,7 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="relative min-h-screen"
-    style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('hero-1.jpg') center center/cover fixed">
+  <nav class="relative h-[70vh] md:h-[90vh] " style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('hero-1.jpg') center center/cover fixed">
     <div
       class="navbar fixed top-0 left-0 right-0 bg-black/90 backdrop-blur-sm py-5 px-8 lg:px-12 flex items-center justify-between z-30 transition-all duration-300">
       <div class="nav-logo">
@@ -98,10 +107,10 @@
     </div>
 
     <!-- Hero Section -->
-    <div class="hero-section pt-36 pb-20 px-4">
+    <div class="hero-section pt-40 pb-15 px-4">
       <div class="background-text max-w-4xl mx-auto text-center">
         <div class="text">
-          <p class="tagline text-[#ff6830] text-xl lg:text-2xl font-bold mb-6">Shape Your Body</p>
+          <p class="tagline text-[#ff6830] text-xl lg:text-2xl font-bold mb-6 ">Shape Your Body</p>
           <h1 class="typing-text gradient-text text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
             BE <span class="text-white">STRONG</span> TRAINING HARD
           </h1>
@@ -120,7 +129,7 @@
 
       <!-- Stats Counter -->
       <div
-        class="stats-counter mt-20 flex flex-wrap justify-center gap-8 bg-[#ff6830]/10 backdrop-blur-md p-3 rounded-2xl max-w-6xl mx-auto">
+        class="stats-counter mt-20 flex flex-wrap justify-center gap-8 bg-[#ff6830]/10 backdrop-blur-md p-3 rounded-2xl max-w-6xl mx-auto hidden md:flex">
         <div class="stat text-center p-6 min-w-[150px]">
           <h3 class="counter text-5xl font-extrabold text-[#ff6830] mb-2" data-target="5000">0</h3>
           <p class="text-lg">Active Members</p>
@@ -144,7 +153,7 @@
   <!-- Services Section -->
   <header id="services" class="bg-black py-20 px-4 lg:px-8">
     <div class="header-text text-center mb-16">
-      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl tracking-[3px] font-bold mb-4 ">Why Choose Us?</p>
+      <p class="section-subtitle text-gray-200 text-lg font-bold mb-4 ">Why Choose Us?</p>
       <h1 class="section-title gradient-text text-3xl lg:text-4xl font-bold mb-12">Push Your Limits Forward</h1>
     </div>
 
@@ -221,8 +230,7 @@
   <!-- Classes Section -->
   <section id="classes" class="bg-[#0a0a0a] py-20 px-4 lg:px-8">
     <div class="header-text text-center mb-16">
-      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl uppercase tracking-[3px] font-semibold mb-4">OUR
-        CLASSES</p>
+      <p class="section-subtitle text-gray-200 text-lg font-semibold mb-4">Our Classes</p>
       <h1 class="section-title gradient-text text-3xl lg:text-5xl font-bold mb-12">WHAT WE CAN OFFER</h1>
     </div>
 
@@ -322,7 +330,7 @@
   <!-- Pricing Section -->
   <div class="our-plan bg-black py-20 px-4 lg:px-8" id="pricing">
     <div class="header-text text-center mb-16">
-      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl uppercase tracking-[3px] font-semibold mb-4">OUR PLAN
+      <p class="section-subtitle text-gray-200 text-lg font-semibold mb-4">Our Plan
       </p>
       <h1 class="section-title gradient-text text-3xl lg:text-5xl font-bold mb-12">CHOOSE YOUR PRICING PLAN</h1>
     </div>
@@ -423,8 +431,7 @@
   <!-- Testimonials -->
   <div class="testimonials bg-[#0a0a0a] py-20 px-4 lg:px-8 text-center">
     <div class="header-text text-center mb-16">
-      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl uppercase tracking-[3px] font-semibold mb-4">SUCCESS
-        STORIES</p>
+      <p class="section-subtitle text-gray-200 text-lg font-semibold mb-4">Success Stories</p>
       <h1 class="section-title gradient-text text-3xl lg:text-5xl font-bold mb-12">WHAT OUR MEMBERS SAY</h1>
     </div>
     <div class="testimonial-slider max-w-4xl mx-auto mb-10 relative h-60 overflow-hidden">
