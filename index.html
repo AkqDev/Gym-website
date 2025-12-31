@@ -1,225 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-  />
-  <link
-    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-    rel="stylesheet"
-  />
-  <title>Gym Website</title>
+  <title>PowerFit Gym - Transform Your Body</title>
 </head>
-<body>
-  <nav>
-    <div class="navbar">
+
+<body class="bg-black text-white overflow-x-hidden font-['Montserrat']">
+  <!-- Back to Top Button -->
+  <button id="backToTop"
+    class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-[#ff6830] to-[#ff8c5a] text-white rounded-full flex items-center justify-center text-xl z-40 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hidden">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen fixed inset-0 flex flex-col items-center justify-center">
+    <div class="loader flex gap-3 mb-5">
+      <div class="bar w-3 h-10 bg-gradient-to-br from-[#ff6830] to-[#ff8c5a] rounded"></div>
+      <div class="bar w-3 h-10 bg-gradient-to-br from-[#ff6830] to-[#ff8c5a] rounded"></div>
+      <div class="bar w-3 h-10 bg-gradient-to-br from-[#ff6830] to-[#ff8c5a] rounded"></div>
+    </div>
+    <p class="text-xl font-semibold">Loading PowerFit Gym...</p>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="notification"
+    class="fixed top-5 right-5 bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white p-4 rounded-xl flex items-center gap-4 z-50 animate-slide-in-right shadow-lg max-w-md hidden">
+    <p class="flex-1">🎉 Special Offer! Get 20% off on Annual Membership!</p>
+    <button id="closeNotification" class="text-2xl hover:scale-110 transition-transform">&times;</button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="relative min-h-screen"
+    style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('hero-1.jpg') center center/cover fixed">
+    <div
+      class="navbar fixed top-0 left-0 right-0 bg-black/90 backdrop-blur-sm py-5 px-8 lg:px-12 flex items-center justify-between z-30 transition-all duration-300">
       <div class="nav-logo">
-        <img src="logo.png" alt="Gym Logo" />
+        <img src="logo.png" alt="PowerFit Gym Logo"
+          class="w-40 lg:w-48 hover:scale-105 transition-transform duration-300">
       </div>
 
-      <div class="nav-menu">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+      <div class="nav-menu hidden lg:block">
+        <ul class="flex gap-8">
+          <li><a href="#"
+              class="nav-link text-white font-semibold text-lg relative py-1 hover:text-[#ff6830] transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ff6830] after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+              data-section="home">Home</a></li>
+          <li><a href="#"
+              class="nav-link text-white font-semibold text-lg relative py-1 hover:text-[#ff6830] transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ff6830] after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+              data-section="about">About Us</a></li>
+          <li><a href="#"
+              class="nav-link text-white font-semibold text-lg relative py-1 hover:text-[#ff6830] transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ff6830] after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+              data-section="services">Services</a></li>
+          <li><a href="#"
+              class="nav-link text-white font-semibold text-lg relative py-1 hover:text-[#ff6830] transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ff6830] after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+              data-section="contact">Contact</a></li>
         </ul>
       </div>
 
-      <div class="menu-icon">
+      <div class="nav-cta hidden lg:block">
+        <button
+          class="cta-btn bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+          onclick="showMembershipModal()">JOIN NOW</button>
+      </div>
+
+      <div class="menu-icon lg:hidden text-3xl cursor-pointer">
         <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
       </div>
     </div>
 
-    <!-- Small Dropdown Menu for Mobile -->
-    <div id="mobileMenu" class="mobile-menu">
-      <ul>
-        <li><a href="#">Home</a></li><hr />
-        <li><a href="#">About</a></li><hr />
-        <li><a href="#">Services</a></li><hr />
-        <li><a href="#">Contact</a></li><hr />
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+      class="mobile-menu fixed top-0 right-0 w-full bg-black/95 backdrop-blur-sm z-20 hidden  animate-slide-in-right h-[100vh]">
+      <ul class="p-5">
+        <li class="mb-4"><a href="#"
+            class="nav-link block text-white py-3 px-4 rounded-lg hover:bg-[#ff6830]/10 hover:text-[#ff6830] transition-all duration-300"
+            data-section="home">Home</a></li>
+        <li class="mb-4"><a href="#"
+            class="nav-link block text-white py-3 px-4 rounded-lg hover:bg-[#ff6830]/10 hover:text-[#ff6830] transition-all duration-300"
+            data-section="about">About</a></li>
+        <li class="mb-4"><a href="#"
+            class="nav-link block text-white py-3 px-4 rounded-lg hover:bg-[#ff6830]/10 hover:text-[#ff6830] transition-all duration-300"
+            data-section="services">Services</a></li>
+        <li class="mb-4"><a href="#"
+            class="nav-link block text-white py-3 px-4 rounded-lg hover:bg-[#ff6830]/10 hover:text-[#ff6830] transition-all duration-300"
+            data-section="contact">Contact</a></li>
+        <li class="mt-6"><button
+            class="cta-btn w-full bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-3 rounded-lg shadow-lg"
+            onclick="showMembershipModal()">JOIN NOW</button></li>
       </ul>
     </div>
 
-    <div class="background-text" data-aos="fade-up">
-      <div class="text">
-        <p>SHAPE YOUR BODY</p>
-        <h1>BE <u>STRONG</u> TRAINING HARD</h1>
-        <button>Get Info</button>
+    <!-- Hero Section -->
+    <div class="hero-section pt-36 pb-20 px-4">
+      <div class="background-text max-w-4xl mx-auto text-center">
+        <div class="text">
+          <p class="tagline text-[#ff6830] text-xl lg:text-2xl font-bold mb-6">Shape Your Body</p>
+          <h1 class="typing-text gradient-text text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
+            BE <span class="text-white">STRONG</span> TRAINING HARD
+          </h1>
+          <p class="subtitle text-gray-300 text-lg lg:text-xl mb-10 max-w-2xl mx-auto">Transform your life with our
+            expert trainers and state-of-the-art equipment</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="hero-btn bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+              onclick="startFreeTrial()">START FREE TRIAL</button>
+            <button
+              class="hero-btn-outline border-2 border-[#ff6830] text-white font-bold py-4 px-10 rounded-full text-lg hover:bg-[#ff6830] hover:-translate-y-1 transition-all duration-300"
+              onclick="scrollToSection('services')">VIEW SERVICES</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Counter -->
+      <div
+        class="stats-counter mt-20 flex flex-wrap justify-center gap-8 bg-[#ff6830]/10 backdrop-blur-md p-3 rounded-2xl max-w-6xl mx-auto">
+        <div class="stat text-center p-6 min-w-[150px]">
+          <h3 class="counter text-5xl font-extrabold text-[#ff6830] mb-2" data-target="5000">0</h3>
+          <p class="text-lg">Active Members</p>
+        </div>
+        <div class="stat text-center p-6 min-w-[150px]">
+          <h3 class="counter text-5xl font-extrabold text-[#ff6830] mb-2" data-target="50">0</h3>
+          <p class="text-lg">Expert Trainers</p>
+        </div>
+        <div class="stat text-center p-6 min-w-[150px]">
+          <h3 class="counter text-5xl font-extrabold text-[#ff6830] mb-2" data-target="200">0</h3>
+          <p class="text-lg">Success Stories</p>
+        </div>
+        <div class="stat text-center p-6 min-w-[150px]">
+          <h3 class="counter text-5xl font-extrabold text-[#ff6830] mb-2" data-target="24">0</h3>
+          <p class="text-lg">Open Hours</p>
+        </div>
       </div>
     </div>
   </nav>
 
-  <header>
-    <div class="header-text" data-aos="fade-down">
-      <p>WHY CHOOSE US?</p>
-      <h1>PUSH YOUR LIMITS FORWARD</h1>
+  <!-- Services Section -->
+  <header id="services" class="bg-black py-20 px-4 lg:px-8">
+    <div class="header-text text-center mb-16">
+      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl tracking-[3px] font-bold mb-4 ">Why Choose Us?</p>
+      <h1 class="section-title gradient-text text-3xl lg:text-4xl font-bold mb-12">Push Your Limits Forward</h1>
     </div>
 
-    <div class="services">
-      <div class="product-card" data-aos="fade-up">
-        <img src="stationary-bike.png" alt="">
-        <h1>Modern equipment</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <div class="services grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div
+        class="product-card bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 hover-3d hover:shadow-2xl border border-[#ff6830]/10 relative overflow-hidden">
+        <div
+          class="card-icon w-20 h-20 bg-[#ff6830]/10 rounded-full flex items-center justify-center mx-auto mb-8 transition-all duration-300">
+          <img src="stationary-bike.png" alt="Modern Equipment" class="w-10 h-10 invert">
+        </div>
+        <h1 class="text-2xl font-bold mb-4">Modern Equipment</h1>
+        <p class="text-gray-400 mb-8">State-of-the-art machines with digital tracking and AI-powered workout
+          optimization.</p>
+        <div
+          class="card-hover absolute bottom-0 left-0 right-0 p-6 bg-[#ff6830]/90 transition-all duration-300 transform translate-y-full">
+          <button
+            class="card-btn bg-white text-[#ff6830] font-semibold py-3 px-6 rounded-full hover:scale-105 transition-transform duration-300"
+            onclick="scrollToSection('classes')">VIEW EQUIPMENT</button>
+        </div>
       </div>
 
-      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-        <img src="juice-drink.png" alt="">
-        <h1>Healthy Nutrition Plan</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div
+        class="product-card bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 hover-3d hover:shadow-2xl border border-[#ff6830]/10 relative overflow-hidden">
+        <div
+          class="card-icon w-20 h-20 bg-[#ff6830]/10 rounded-full flex items-center justify-center mx-auto mb-8 transition-all duration-300">
+          <img src="juice-drink.png" alt="Nutrition Plan" class="w-10 h-10 invert">
+        </div>
+        <h1 class="text-2xl font-bold mb-4">Healthy Nutrition Plan</h1>
+        <p class="text-gray-400 mb-8">Personalized diet plans with certified nutritionists and weekly meal prep guides.
+        </p>
+        <div
+          class="card-hover absolute bottom-0 left-0 right-0 p-6 bg-[#ff6830]/90 transition-all duration-300 transform translate-y-full">
+          <button
+            class="card-btn bg-white text-[#ff6830] font-semibold py-3 px-6 rounded-full hover:scale-105 transition-transform duration-300"
+            onclick="showNutritionModal()">GET PLAN</button>
+        </div>
       </div>
 
-      <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-        <img src="gym.png" alt="">
-        <h1>Professional Training</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div
+        class="product-card bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 hover-3d hover:shadow-2xl border border-[#ff6830]/10 relative overflow-hidden">
+        <div
+          class="card-icon w-20 h-20 bg-[#ff6830]/10 rounded-full flex items-center justify-center mx-auto mb-8 transition-all duration-300">
+          <img src="gym.png" alt="Professional Training" class="w-10 h-10 invert">
+        </div>
+        <h1 class="text-2xl font-bold mb-4">Professional Training</h1>
+        <p class="text-gray-400 mb-8">Certified trainers providing 1-on-1 sessions and group classes for all fitness
+          levels.</p>
+        <div
+          class="card-hover absolute bottom-0 left-0 right-0 p-6 bg-[#ff6830]/90 transition-all duration-300 transform translate-y-full">
+          <button
+            class="card-btn bg-white text-[#ff6830] font-semibold py-3 px-6 rounded-full hover:scale-105 transition-transform duration-300"
+            onclick="showTrainerModal()">MEET TRAINERS</button>
+        </div>
       </div>
 
-      <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-        <img src="heart-beat.png" alt="">
-        <h1>Unique to your needs</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div
+        class="product-card bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 hover-3d hover:shadow-2xl border border-[#ff6830]/10 relative overflow-hidden">
+        <div
+          class="card-icon w-20 h-20 bg-[#ff6830]/10 rounded-full flex items-center justify-center mx-auto mb-8 transition-all duration-300">
+          <img src="heart-beat.png" alt="Personalized Needs" class="w-10 h-10 invert">
+        </div>
+        <h1 class="text-2xl font-bold mb-4">Unique to Your Needs</h1>
+        <p class="text-gray-400 mb-8">Custom workout plans tailored to your goals, schedule, and fitness level.</p>
+        <div
+          class="card-hover absolute bottom-0 left-0 right-0 p-6 bg-[#ff6830]/90 transition-all duration-300 transform translate-y-full">
+          <button
+            class="card-btn bg-white text-[#ff6830] font-semibold py-3 px-6 rounded-full hover:scale-105 transition-transform duration-300"
+            onclick="startFreeTrial()">START FREE TRIAL</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <section>
-    <div class="header-text" data-aos="fade-down">
-      <p>OUR CLASSES</p>
-      <h1>WHAT WE CAN OFFER</h1>
+  <!-- Classes Section -->
+  <section id="classes" class="bg-[#0a0a0a] py-20 px-4 lg:px-8">
+    <div class="header-text text-center mb-16">
+      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl uppercase tracking-[3px] font-semibold mb-4">OUR
+        CLASSES</p>
+      <h1 class="section-title gradient-text text-3xl lg:text-5xl font-bold mb-12">WHAT WE CAN OFFER</h1>
     </div>
 
-    <div class="section-product">
-      <div class="product-text1" data-aos="zoom-in">
-        <div class="product-background1">
-          <p>STRENGTH</p>
-          <h1>WEIGHTLIFTING</h1>
+    <div class="classes-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <div
+        class="class-card h-80 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-cover bg-center"
+        style="background-image: url('class-1.jpg')">
+        <div
+          class="class-overlay absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent transition-all duration-300 transform translate-y-8">
+          <p class="text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-2">STRENGTH</p>
+          <h2 class="text-3xl font-bold mb-6">WEIGHTLIFTING</h2>
+          <button
+            class="class-btn border-2 border-[#ff6830] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#ff6830] transition-all duration-300"
+            onclick="bookClass('weightlifting')">BOOK NOW</button>
         </div>
       </div>
 
-      <div class="product-text1" data-aos="zoom-in" data-aos-delay="150">
-        <div class="product-background1">
-          <p>Cardio</p>
-          <h1>INDOOR CYCLING</h1>
+      <div
+        class="class-card h-80 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-cover bg-center"
+        style="background-image: url('class-2.jpg')">
+        <div
+          class="class-overlay absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent transition-all duration-300 transform translate-y-8">
+          <p class="text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-2">CARDIO</p>
+          <h2 class="text-3xl font-bold mb-6">INDOOR CYCLING</h2>
+          <button
+            class="class-btn border-2 border-[#ff6830] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#ff6830] transition-all duration-300"
+            onclick="bookClass('cycling')">BOOK NOW</button>
         </div>
       </div>
 
-      <div class="product-text1" data-aos="zoom-in" data-aos-delay="300">
-        <div class="product-background1">
-          <p>STRENGTH</p>
-          <h1>KETTLEBELL POWER</h1>
+      <div
+        class="class-card h-80 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-cover bg-center"
+        style="background-image: url('class-3.jpg')">
+        <div
+          class="class-overlay absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent transition-all duration-300 transform translate-y-8">
+          <p class="text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-2">STRENGTH</p>
+          <h2 class="text-3xl font-bold mb-6">KETTLEBELL POWER</h2>
+          <button
+            class="class-btn border-2 border-[#ff6830] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#ff6830] transition-all duration-300"
+            onclick="bookClass('kettlebell')">BOOK NOW</button>
+        </div>
+      </div>
+
+      <div
+        class="class-card h-80 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-cover bg-center"
+        style="background-image: url('class-4.jpg')">
+        <div
+          class="class-overlay absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent transition-all duration-300 transform translate-y-8">
+          <p class="text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-2">FLEXIBILITY</p>
+          <h2 class="text-3xl font-bold mb-6">POWER YOGA</h2>
+          <button
+            class="class-btn border-2 border-[#ff6830] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#ff6830] transition-all duration-300"
+            onclick="bookClass('yoga')">BOOK NOW</button>
+        </div>
+      </div>
+
+      <div
+        class="class-card h-80 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-cover bg-center"
+        style="background-image: url('class-5.jpg')">
+        <div
+          class="class-overlay absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent transition-all duration-300 transform translate-y-8">
+          <p class="text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-2">HIIT</p>
+          <h2 class="text-3xl font-bold mb-6">CROSSFIT</h2>
+          <button
+            class="class-btn border-2 border-[#ff6830] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#ff6830] transition-all duration-300"
+            onclick="bookClass('crossfit')">BOOK NOW</button>
+        </div>
+      </div>
+
+      <div
+        class="class-card h-80 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-cover bg-center"
+        style="background-image: url('hero-1.jpg')">
+        <div
+          class="class-overlay absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent transition-all duration-300 transform translate-y-8">
+          <p class="text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-2">RECOVERY</p>
+          <h2 class="text-3xl font-bold mb-6">STRETCH & RECOVER</h2>
+          <button
+            class="class-btn border-2 border-[#ff6830] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#ff6830] transition-all duration-300"
+            onclick="bookClass('recovery')">BOOK NOW</button>
         </div>
       </div>
     </div>
   </section>
 
-  <main data-aos="fade-up">
-    <div class="background-image">
-      <h1>Register Now To Get More Deals</h1>
-      <p>Where Health, Beauty & Fitness Meet.</p>
-      <button>APPOINTMENT</button>
+  <!-- Membership Banner -->
+  <main class="membership-banner py-20 px-4 lg:px-8 text-center relative"
+    style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('hero-2.jpg') center center/cover fixed">
+    <div class="banner-content max-w-4xl mx-auto">
+      <h1 class="gradient-text text-3xl lg:text-5xl font-bold mb-6">Register Now To Get More Deals</h1>
+      <p class="banner-subtitle text-[#ff6830] text-xl lg:text-2xl font-semibold mb-10">Where Health, Beauty & Fitness Meet.</p>
+      <button
+        class="banner-btn bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-5 px-12 rounded-full text-lg lg:text-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+        onclick="showMembershipModal()">GET 20% OFF NOW</button>
     </div>
   </main>
 
-  <div class="our-plan">
-    <div class="header-text" data-aos="fade-down">
-      <p>OUR PLAN</p>
-      <h1>CHOOSE YOUR PRICING PLAN</h1>
+  <!-- Pricing Section -->
+  <div class="our-plan bg-black py-20 px-4 lg:px-8" id="pricing">
+    <div class="header-text text-center mb-16">
+      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl uppercase tracking-[3px] font-semibold mb-4">OUR PLAN
+      </p>
+      <h1 class="section-title gradient-text text-3xl lg:text-5xl font-bold mb-12">CHOOSE YOUR PRICING PLAN</h1>
     </div>
 
-    <div class="price-card">
-      <div class="price" data-aos="flip-left">
-        <h1>Class drop-in</h1>
-        <h2>$39.0</h2>
-        <p>SINGLE CLASS</p>
-        <ul>
-          <li>Free riding</li>
-          <li>Unlimited equipment</li>
-          <li>Personal trainer</li>
-          <li>Weight losing classes</li>
-          <li>Month to month</li>
-          <li>No time restriction</li>
+    <div class="price-cards grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div
+        class="price-card-popular bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 relative">
+        <div
+          class="popular-tag absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white py-2 px-6 rounded-full text-sm font-semibold">
+          Most Popular</div>
+        <h1 class="text-2xl font-bold mb-8">12 Month Unlimited</h1>
+        <div class="price-amount mb-8">
+          <span class="currency text-3xl text-[#ff6830]">$</span>
+          <span class="amount text-6xl font-extrabold">99</span>
+          <span class="period text-gray-400 text-lg">/month</span>
+        </div>
+        <p class="price-description text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-8">FULL ACCESS -
+          SAVE 40%</p>
+        <ul class="mb-10 text-left">
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Unlimited
+            Gym Access</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> All Group
+            Classes</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Personal
+            Trainer (4 sessions)</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Nutrition
+            Plan</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Locker &
+            Towel Service</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> No Contract
+            Freeze</li>
         </ul>
-        <button>ENROLL NOW</button>
+        <button
+          class="price-btn w-full bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-4 rounded-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          onclick="selectPlan('annual')">ENROLL NOW</button>
       </div>
 
-      <div class="price" data-aos="flip-left" data-aos-delay="200">
-        <h1>12 Month unlimited</h1>
-        <h2>$99.0</h2>
-        <p>FULL ACCESS</p>
-        <ul>
-          <li>Free riding</li>
-          <li>Unlimited equipment</li>
-          <li>Personal trainer</li>
-          <li>Weight losing classes</li>
-          <li>Month to month</li>
-          <li>No time restriction</li>
+      <div
+        class="price-card bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 border-2 border-transparent">
+        <h1 class="text-2xl font-bold mb-8">6 Month Unlimited</h1>
+        <div class="price-amount mb-8">
+          <span class="currency text-3xl text-[#ff6830]">$</span>
+          <span class="amount text-6xl font-extrabold">59</span>
+          <span class="period text-gray-400 text-lg">/month</span>
+        </div>
+        <p class="price-description text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-8">HALF YEAR - SAVE
+          20%</p>
+        <ul class="mb-10 text-left">
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Unlimited
+            Gym Access</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> All Group
+            Classes</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Personal
+            Trainer (2 sessions)</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Basic
+            Nutrition Plan</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Locker
+            Service</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> 1 Month
+            Freeze</li>
         </ul>
-        <button>ENROLL NOW</button>
+        <button
+          class="price-btn w-full bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-4 rounded-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          onclick="selectPlan('half-year')">ENROLL NOW</button>
       </div>
 
-      <div class="price" data-aos="flip-left" data-aos-delay="400">
-        <h1>6 Month unlimited</h1>
-        <h2>$59.0</h2>
-        <p>HALF YEAR</p>
-        <ul>
-          <li>Free riding</li>
-          <li>Unlimited equipment</li>
-          <li>Personal trainer</li>
-          <li>Weight losing classes</li>
-          <li>Month to month</li>
-          <li>No time restriction</li>
+      <div
+        class="price-card bg-[#111] rounded-2xl p-8 text-center transition-all duration-300 border-2 border-transparent">
+        <h1 class="text-2xl font-bold mb-8">Monthly Access</h1>
+        <div class="price-amount mb-8">
+          <span class="currency text-3xl text-[#ff6830]">$</span>
+          <span class="amount text-6xl font-extrabold">39</span>
+          <span class="period text-gray-400 text-lg">/month</span>
+        </div>
+        <p class="price-description text-[#ff6830] font-semibold uppercase tracking-[2px] text-sm mb-8">FLEXIBLE PLAN
+        </p>
+        <ul class="mb-10 text-left">
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Gym Access
+          </li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Selected
+            Classes</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> 1 Trainer
+            Session</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> No Contract
+          </li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Cancel
+            Anytime</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-check text-[#ff6830] mr-3"></i> Basic
+            Amenities</li>
         </ul>
-        <button>ENROLL NOW</button>
+        <button
+          class="price-btn w-full bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-4 rounded-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          onclick="selectPlan('monthly')">ENROLL NOW</button>
       </div>
     </div>
   </div>
 
-  <footer>
-    <div class="footer-main">
-      <div class="footer-paragraph">
-        <img src="logo.png" alt="">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <!-- Testimonials -->
+  <div class="testimonials bg-[#0a0a0a] py-20 px-4 lg:px-8 text-center">
+    <div class="header-text text-center mb-16">
+      <p class="section-subtitle text-[#ff6830] text-lg lg:text-xl uppercase tracking-[3px] font-semibold mb-4">SUCCESS
+        STORIES</p>
+      <h1 class="section-title gradient-text text-3xl lg:text-5xl font-bold mb-12">WHAT OUR MEMBERS SAY</h1>
+    </div>
+    <div class="testimonial-slider max-w-4xl mx-auto mb-10 relative h-60 overflow-hidden">
+      <div class="testimonial active absolute w-full transition-all duration-500 opacity-100 transform translate-x-0">
+        <p class="text-xl lg:text-2xl italic text-gray-300 mb-8">"Transformed my life! Lost 30lbs in 3 months with their
+          amazing trainers."</p>
+        <h4 class="text-[#ff6830] text-lg">- Sarah Johnson</h4>
+      </div>
+      <div class="testimonial absolute w-full transition-all duration-500 opacity-0 transform translate-x-full">
+        <p class="text-xl lg:text-2xl italic text-gray-300 mb-8">"The best gym experience ever! Equipment is top-notch
+          and staff is super helpful."</p>
+        <h4 class="text-[#ff6830] text-lg">- Mike Chen</h4>
+      </div>
+      <div class="testimonial absolute w-full transition-all duration-500 opacity-0 transform translate-x-full">
+        <p class="text-xl lg:text-2xl italic text-gray-300 mb-8">"Love the community vibe! Made friends and achieved my
+          fitness goals together."</p>
+        <h4 class="text-[#ff6830] text-lg">- Emily Rodriguez</h4>
+      </div>
+    </div>
+    <div class="slider-dots flex justify-center gap-3">
+      <span
+        class="dot w-3 h-3 rounded-full bg-gray-400 cursor-pointer transition-all duration-300 active:bg-[#ff6830] active:scale-125"
+        onclick="currentSlide(0)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-gray-400 cursor-pointer transition-all duration-300"
+        onclick="currentSlide(1)"></span>
+      <span class="dot w-3 h-3 rounded-full bg-gray-400 cursor-pointer transition-all duration-300"
+        onclick="currentSlide(2)"></span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-[#050505] pt-20 pb-10 px-4 lg:px-8">
+    <div class="footer-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
+      <div class="footer-section">
+        <img src="logo.png" alt="PowerFit Gym" class="w-40 mb-6">
+        <p class="text-gray-400 mb-6">Transforming lives through fitness since 2010. Join our community of over 5,000
+          members!</p>
+        <div class="social-icons flex gap-4">
+          <a href="#"
+            class="w-10 h-10 bg-[#ff6830]/10 rounded-full flex items-center justify-center text-white hover:bg-[#ff6830] hover:-translate-y-1 transition-all duration-300"><i
+              class="fab fa-facebook-f"></i></a>
+          <a href="#"
+            class="w-10 h-10 bg-[#ff6830]/10 rounded-full flex items-center justify-center text-white hover:bg-[#ff6830] hover:-translate-y-1 transition-all duration-300"><i
+              class="fab fa-instagram"></i></a>
+          <a href="#"
+            class="w-10 h-10 bg-[#ff6830]/10 rounded-full flex items-center justify-center text-white hover:bg-[#ff6830] hover:-translate-y-1 transition-all duration-300"><i
+              class="fab fa-twitter"></i></a>
+          <a href="#"
+            class="w-10 h-10 bg-[#ff6830]/10 rounded-full flex items-center justify-center text-white hover:bg-[#ff6830] hover:-translate-y-1 transition-all duration-300"><i
+              class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+        <ul>
+          <li class="mb-4"><a href="#" onclick="scrollToSection('home')"
+              class="text-gray-400 hover:text-[#ff6830] hover:pl-2 transition-all duration-300">Home</a></li>
+          <li class="mb-4"><a href="#" onclick="scrollToSection('about')"
+              class="text-gray-400 hover:text-[#ff6830] hover:pl-2 transition-all duration-300">About Us</a></li>
+          <li class="mb-4"><a href="#" onclick="scrollToSection('services')"
+              class="text-gray-400 hover:text-[#ff6830] hover:pl-2 transition-all duration-300">Services</a></li>
+          <li class="mb-4"><a href="#" onclick="scrollToSection('classes')"
+              class="text-gray-400 hover:text-[#ff6830] hover:pl-2 transition-all duration-300">Classes</a></li>
+          <li class="mb-4"><a href="#" onclick="scrollToSection('pricing')"
+              class="text-gray-400 hover:text-[#ff6830] hover:pl-2 transition-all duration-300">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="text-xl font-bold mb-6">Contact Info</h3>
+        <ul class="contact-info">
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-map-marker-alt text-[#ff6830] mr-3"></i> 123
+            Fitness St, Gym City</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-phone text-[#ff6830] mr-3"></i> (123)
+            456-7890</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-envelope text-[#ff6830] mr-3"></i>
+            info@powerfitgym.com</li>
+          <li class="mb-4 text-gray-400 flex items-center"><i class="fas fa-clock text-[#ff6830] mr-3"></i> Open 24/7
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="text-xl font-bold mb-6">Newsletter</h3>
+        <p class="text-gray-400 mb-6">Subscribe for fitness tips and exclusive offers!</p>
+        <div class="newsletter flex gap-3">
+          <input type="email" placeholder="Enter your email" id="newsletterEmail"
+            class="flex-1 py-3 px-5 bg-transparent border border-[#ff6830]/30 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-[#ff6830]">
+          <button onclick="subscribeNewsletter()"
+            class="bg-[#ff6830] text-white py-3 px-6 rounded-full hover:bg-[#e55a2b] transition-colors duration-300">SUBSCRIBE</button>
+        </div>
       </div>
     </div>
 
-    <div class="footer-main">
-      <div class="footer-paragraph">
-        <h1>Useful links</h1>
-        <ul>
-          <li>About</li>
-          <li>Blog</li>
-          <li>Classes</li>
-          <li>Contact</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-main">
-      <div class="footer-paragraph">
-        <h1>Support</h1>
-        <ul>
-          <li>Login</li>
-          <li>My Account</li>
-          <li>Subscribe</li>
-          <li>Contact</li>
-        </ul>
-      </div>
+    <div class="end text-center mt-16 pt-8 border-t border-[#ff6830]/10">
+      <p class="text-gray-400">Copyright ©2024 PowerFit Gym | Made with <i class="fas fa-heart text-[#ff6830] mx-1"></i>
+        by hassan-qureshii</p>
     </div>
   </footer>
 
-  <div class="end">
-    <p>Copyright ©2024 All rights reserved | Made by hassan-qureshii</p>
+  <!-- Modals -->
+  <div id="membershipModal" class="modal fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
+    <div class="modal-content bg-[#111] rounded-2xl p-8 max-w-md w-full mx-4 animate-modal-in">
+      <span
+        class="close absolute top-6 right-6 text-3xl text-gray-400 cursor-pointer hover:text-[#ff6830] transition-colors duration-300"
+        onclick="closeModal('membershipModal')">&times;</span>
+      <h2 class="text-2xl font-bold mb-8 text-center">Join PowerFit Gym</h2>
+      <form id="membershipForm" class="flex flex-col gap-5">
+        <input type="text" placeholder="Full Name" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <input type="email" placeholder="Email Address" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <input type="tel" placeholder="Phone Number" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <select required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+          <option value="">Select Plan</option>
+          <option value="monthly">Monthly ($39)</option>
+          <option value="half-year">6 Months ($59/month)</option>
+          <option value="annual">12 Months ($99/month)</option>
+        </select>
+        <button type="submit"
+          class="modal-btn bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-4 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all duration-300">GET
+          STARTED</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="bookingModal" class="modal fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
+    <div class="modal-content bg-[#111] rounded-2xl p-8 max-w-md w-full mx-4 animate-modal-in">
+      <span
+        class="close absolute top-6 right-6 text-3xl text-gray-400 cursor-pointer hover:text-[#ff6830] transition-colors duration-300"
+        onclick="closeModal('bookingModal')">&times;</span>
+      <h2 class="text-2xl font-bold mb-8 text-center">Book a Class</h2>
+      <form id="bookingForm" class="flex flex-col gap-5">
+        <input type="text" placeholder="Your Name" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <input type="email" placeholder="Email" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <select id="classSelect" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+          <option value="">Select Class</option>
+          <option value="weightlifting">Weightlifting</option>
+          <option value="cycling">Indoor Cycling</option>
+          <option value="kettlebell">Kettlebell Power</option>
+          <option value="yoga">Power Yoga</option>
+          <option value="crossfit">CrossFit</option>
+        </select>
+        <input type="date" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <input type="time" required
+          class="py-4 px-5 border border-[#ff6830]/30 bg-white/5 rounded-xl text-white focus:outline-none focus:border-[#ff6830]">
+        <button type="submit"
+          class="modal-btn bg-gradient-to-r from-[#ff6830] to-[#ff8c5a] text-white font-bold py-4 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all duration-300">BOOK
+          NOW</button>
+      </form>
+    </div>
   </div>
 
   <script src="script.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
 </body>
+
 </html>
