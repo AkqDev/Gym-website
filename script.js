@@ -12,8 +12,6 @@ const navbar = document.querySelector('.navbar');
 // Fix for loading screen timeout
 let hideLoadingTimeout;
 let loadStarted = false;
-
-// Function to hide loading screen
 function hideLoadingScreen() {
     if (loadStarted) return; // Prevent multiple calls
     loadStarted = true;
